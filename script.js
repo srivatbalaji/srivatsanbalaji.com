@@ -124,6 +124,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 padding: '1rem'
             }
         ];
+
+        // Function to check if a position overlaps with existing buttons
+        const isOverlapping = (x, y, size, existingButtons) => {
+            const minDistance = size * 2; // Increased minimum distance between button centers (120% of button size)
+            return existingButtons.some(button => {
+                const buttonX = parseInt(button.style.left);
+                const buttonY = parseInt(button.style.top);
+                const distance = Math.sqrt(Math.pow(x - buttonX, 2) + Math.pow(y - buttonY, 2));
+                return distance < minDistance;
+            });
+        };
+
+        // Array to store existing button positions
+        const existingButtons = [];
         
         buttons.forEach((buttonConfig, index) => {
             console.log(`Creating button ${index + 1}: ${buttonConfig.text}`);
@@ -169,14 +183,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const maxX = window.innerWidth - buttonSize - 100;
             const maxY = window.innerHeight - buttonSize - 100;
             
-            // Use initial position if specified, otherwise random
-            const x = Math.max(50, Math.min(maxX, Math.random() * window.innerWidth - buttonSize));
-            const y = Math.max(100, Math.min(maxY, Math.random() * window.innerHeight - buttonSize));
+            // Find a non-overlapping position
+            let x, y;
+            let attempts = 0;
+            const maxAttempts = 50;
+            
+            do {
+                x = Math.max(50, Math.min(maxX, Math.random() * window.innerWidth - buttonSize));
+                y = Math.max(100, Math.min(maxY, Math.random() * window.innerHeight - buttonSize));
+                attempts++;
+            } while (isOverlapping(x, y, buttonSize, existingButtons) && attempts < maxAttempts);
             
             console.log(`Positioning button ${buttonConfig.text} at x: ${x}, y: ${y}`);
             
             button.style.left = `${x}px`;
             button.style.top = `${y}px`;
+            
+            // Add to existing buttons array
+            existingButtons.push(button);
             
             main.appendChild(button);
             makeDraggable(button);
