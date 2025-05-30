@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const buttons = [
             { 
                 image: 'images/cokebutton.png', 
-                text: 'Spotify', 
+                text: 'What I\'m on', 
                 link: 'spotify.html',
                 size: 180,
                 textSize: '1rem',
