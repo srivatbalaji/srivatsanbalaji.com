@@ -19,27 +19,42 @@ body {
     padding: 0.2rem 0;
     margin-bottom: 1rem;
     position: relative;
+    width: 100%;
 }
 
 .header-container {
     max-width: 1200px;
     margin: 0 auto;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
     padding: 0 2rem;
+    gap: 2rem;
+    width: 100%;
+}
+
+.nav-left, .nav-right {
+    display: flex;
     gap: 3rem;
+    z-index: 1;
+}
+
+.nav-left {
+    justify-content: flex-end;
+}
+
+.nav-right {
+    justify-content: flex-start;
 }
 
 .name {
     font-size: 0.9rem;
     font-weight: 700;
     white-space: nowrap;
-}
-
-.nav-left, .nav-right {
-    display: flex;
-    gap: 1.5rem;
+    text-align: center;
+    min-width: max-content;
+    z-index: 2;
+    grid-column: 2;
 }
 
 .nav-link {
@@ -165,21 +180,32 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
     .header-container {
-        flex-direction: column;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
         gap: 1rem;
         text-align: center;
     }
     
     .name {
-        position: static;
-        transform: none;
-        order: -1;
+        grid-column: 1;
+        grid-row: 1;
         margin: 1rem 0;
     }
     
-    .nav-left, .nav-right {
+    .nav-left {
+        grid-column: 1;
+        grid-row: 2;
         justify-content: center;
         flex-wrap: wrap;
+        gap: 2rem;
+    }
+    
+    .nav-right {
+        grid-column: 1;
+        grid-row: 3;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
     }
     
     .back-arrow {
@@ -187,6 +213,23 @@ body {
         margin-right: auto;
         margin-bottom: 1rem;
         display: inline-block;
+    }
+}
+
+/* Additional responsive breakpoint for very small screens */
+@media (max-width: 480px) {
+    .header-container {
+        padding: 0 1rem;
+    }
+    
+    .nav-left, .nav-right {
+        gap: 1.5rem;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .nav-link {
+        padding: 0.5rem 1rem;
     }
 }
 
