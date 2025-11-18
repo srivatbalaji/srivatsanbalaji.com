@@ -87,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Only run this on the homepage
     if (!document.querySelector('main').classList.contains('content-page')) {
         const main = document.querySelector('main');
-        console.log('Creating buttons on homepage');
         
         // Define button configurations
         const buttons = [
@@ -117,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             { 
                 image: 'images/tsbutton.png', 
-                text: 'Github', 
+                text: 'GitHub', 
                 link: 'https://github.com/srivatbalaji',
                 size: 180,
                 textSize: '1rem',
@@ -139,10 +138,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Array to store existing button positions
         const existingButtons = [];
         
-        buttons.forEach((buttonConfig, index) => {
-            console.log(`Creating button ${index + 1}: ${buttonConfig.text}`);
+        buttons.forEach((buttonConfig) => {
             const button = document.createElement('div');
-            button.className = 'random-button draggable';
+            button.className = 'random-button';
             
             // Apply custom padding if specified
             if (buttonConfig.padding) {
@@ -193,8 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 y = Math.max(100, Math.min(maxY, Math.random() * window.innerHeight - buttonSize));
                 attempts++;
             } while (isOverlapping(x, y, buttonSize, existingButtons) && attempts < maxAttempts);
-            
-            console.log(`Positioning button ${buttonConfig.text} at x: ${x}, y: ${y}`);
             
             button.style.left = `${x}px`;
             button.style.top = `${y}px`;
