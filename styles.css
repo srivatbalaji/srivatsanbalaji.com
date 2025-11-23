@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
+/* ============================================
+   RESET & BASE STYLES
+   ============================================ */
 * {
     margin: 0;
     padding: 0;
@@ -13,81 +16,86 @@ body {
     background-color: #fff;
     line-height: 1.6;
     min-height: 100vh;
-    padding: 2rem;
-}
-
-/* Header Styles */
-.main-header {
-    padding: 0.2rem 0;
-    margin-bottom: 1rem;
-    position: relative;
-    width: 100%;
-}
-
-.header-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    padding: 0 2rem;
-    gap: 2rem;
-    width: 100%;
-}
-
-.nav-left, .nav-right {
     display: flex;
-    gap: 3rem;
-    z-index: 1;
 }
 
-.nav-left {
-    justify-content: flex-end;
+/* ============================================
+   SIDEBAR NAVIGATION
+   ============================================ */
+.sidebar-nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100vh;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    background-color: #fff;
+    z-index: 100;
 }
 
-.nav-right {
-    justify-content: flex-start;
-}
-
-.name {
+.site-name {
+    text-decoration: none;
+    color: #000;
     font-size: 0.9rem;
-    font-weight: 700;
-    white-space: nowrap;
-    text-align: center;
-    min-width: max-content;
-    z-index: 2;
-    grid-column: 2;
+    font-weight: 400;
+    padding: 0 0 0.5rem 0;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s ease;
+}
+
+.site-name:hover {
+    color: #0066ff;
 }
 
 .nav-link {
     text-decoration: none;
-    color: inherit;
+    color: #000;
     font-size: 0.9rem;
     font-weight: 400;
-    padding: 0.3rem 0.8rem;
+    padding: 0.1rem 0;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #0066ff;
+}
+
+/* ============================================
+   MAIN CONTENT AREA (Homepage)
+   ============================================ */
+.main-content {
+    margin-left: 200px;
+    flex: 1;
+    min-height: 100vh;
+    padding: 2rem;
     position: relative;
-    border-radius: 20px;
 }
 
-.nav-link::before {
-    content: '';
+/* ============================================
+   CONTENT PAGES (About, Projects, etc.)
+   ============================================ */
+.content-page {
+    margin-left: 200px;
+    width: calc(100vw - 200px);
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Center all direct children within the full viewport width (from sidebar at 0px to right edge) */
+.content-page > * {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: 1px solid #1a237e;
-    border-radius: 20px;
-    opacity: 0;
+    top: 50%;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
 
-.nav-link:hover::before {
-    opacity: 1;
-    border-style: dashed;
-    border-width: 1.5px;
-}
-
-/* Random Buttons - Made Larger */
+/* ============================================
+   HOMEPAGE BUTTONS
+   ============================================ */
 .random-button {
     position: absolute;
     padding: 2rem;
@@ -97,7 +105,7 @@ body {
     flex-direction: column;
     align-items: center;
     cursor: move;
-    z-index: 100;
+    z-index: 10;
     user-select: none;
     transition: transform 0.2s ease;
 }
@@ -135,123 +143,15 @@ body {
     opacity: 1;
 }
 
-/* Content Pages */
-.content-page {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-    position: relative;
-    height: calc(100vh - 4rem);
-    display: flex;
-    align-items: center;
-}
-
-.loading {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.5rem;
-    color: #000;
-}
-
-.back-arrow {
-    position: absolute;
-    left: 2rem;
-    top: 0.2rem;
-    font-size: 1.2rem;
-    color: inherit;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: transform 0.2s ease;
-}
-
-.back-arrow:hover {
-    transform: translateX(-5px);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .header-container {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto;
-        gap: 1rem;
-        text-align: center;
-    }
-    
-    .name {
-        grid-column: 1;
-        grid-row: 1;
-        margin: 1rem 0;
-    }
-    
-    .nav-left {
-        grid-column: 1;
-        grid-row: 2;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 2rem;
-    }
-    
-    .nav-right {
-        grid-column: 1;
-        grid-row: 3;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 2rem;
-    }
-    
-    .back-arrow {
-        position: static;
-        margin-right: auto;
-        margin-bottom: 1rem;
-        display: inline-block;
-    }
-}
-
-/* Additional responsive breakpoint for very small screens */
-@media (max-width: 480px) {
-    .header-container {
-        padding: 0 1rem;
-    }
-    
-    .nav-left, .nav-right {
-        gap: 1.5rem;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .nav-link {
-        padding: 0.5rem 1rem;
-    }
-}
-
-/* Spotify Page Styles */
-.spotify-container {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    margin-top: 60px;
-}
-
-/* About Page Styles */
+/* ============================================
+   PAGE-SPECIFIC STYLES
+   ============================================ */
 .about-content {
     max-width: 600px;
-    width: 100%;
-    margin: 0 auto;
+    width: auto;
     padding: 2rem;
     font-size: 1rem;
     text-align: center;
-}
-
-.about-content h1 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    font-weight: 700;
 }
 
 .about-content p {
@@ -259,45 +159,75 @@ body {
     line-height: 1.6;
 }
 
-.about-content .education {
-    font-size: 1.1rem;
+.loading {
+    font-size: 1.5rem;
+    color: #000;
+    white-space: nowrap;
+    text-align: center;
 }
 
-.about-content .interests {
-    font-size: 1.1rem;
-    font-style: italic;
+/* ============================================
+   SPOTIFY PAGE
+   ============================================ */
+.spotify-container {
+    margin-left: 200px;
+    width: calc(100vw - 200px);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
-.about-content .mission {
-    font-size: 1.1rem;
-    margin: 2rem 0;
+.spotify-container iframe {
+    max-width: 70%;
 }
 
-.about-content .contact {
-    margin-top: 3rem;
-}
-
-.about-content a {
-    color: inherit;
-    text-decoration: none;
-    border-bottom: 1px solid #1a237e;
-    transition: border-color 0.2s ease;
-}
-
-.about-content a:hover {
-    border-color: transparent;
-}
-
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
 @media (max-width: 768px) {
+    .sidebar-nav {
+        position: static;
+        width: 100%;
+        height: auto;
+        padding: 1rem;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: center;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        padding: 1rem;
+    }
+    
+    .content-page {
+        margin-left: 0;
+        width: 100vw;
+    }
+    
+    .content-page > * {
+        left: 50vw;
+        transform: translate(-50%, -50%);
+    }
+    
     .about-content {
         padding: 1rem;
     }
     
-    .about-content h1 {
-        font-size: 1.75rem;
+    .spotify-container {
+        margin-left: 0;
+        width: 100vw;
     }
     
-    .about-content p {
-        font-size: 1rem;
+    .spotify-container iframe {
+        max-width: 90%;
+        margin: 1rem;
+    }
+    
+    .spotify-container iframe {
+        max-width: 90%;
     }
 }

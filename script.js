@@ -176,10 +176,22 @@ document.addEventListener('DOMContentLoaded', () => {
             button.appendChild(icon);
             button.appendChild(text);
             
-            // Position the button randomly within safe bounds
+            // Position the button randomly within safe bounds of main-content area
             const buttonSize = buttonConfig.size || 160;
-            const maxX = window.innerWidth - buttonSize - 100;
-            const maxY = window.innerHeight - buttonSize - 100;
+            const buttonPadding = buttonConfig.padding ? parseInt(buttonConfig.padding) : 32; // Default 2rem = 32px
+            const totalButtonWidth = buttonSize + (buttonPadding * 2);
+            const totalButtonHeight = buttonSize + (buttonPadding * 2) + 30; // Extra for text
+            
+            // Get main-content dimensions
+            const mainRect = main.getBoundingClientRect();
+            const contentWidth = mainRect.width;
+            const contentHeight = mainRect.height;
+            
+            // Calculate safe bounds within main-content
+            const maxX = contentWidth - totalButtonWidth - 20; // 20px padding from edge
+            const maxY = contentHeight - totalButtonHeight - 20;
+            const minX = 20;
+            const minY = 20;
             
             // Find a non-overlapping position
             let x, y;
@@ -187,11 +199,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const maxAttempts = 50;
             
             do {
-                x = Math.max(50, Math.min(maxX, Math.random() * window.innerWidth - buttonSize));
-                y = Math.max(100, Math.min(maxY, Math.random() * window.innerHeight - buttonSize));
+                x = minX + Math.random() * (maxX - minX);
+                y = minY + Math.random() * (maxY - minY);
                 attempts++;
-            } while (isOverlapping(x, y, buttonSize, existingButtons) && attempts < maxAttempts);
+            } while (isOverlapping(x, y, totalButtonWidth, existingButtons) && attempts < maxAttempts);
             
+            // Position relative to main-content container
             button.style.left = `${x}px`;
             button.style.top = `${y}px`;
             
