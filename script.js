@@ -92,41 +92,41 @@ document.addEventListener('DOMContentLoaded', () => {
         const buttons = [
             { 
                 image: 'images/cokebutton.png', 
-                text: 'What I\'m on', 
+                text: 'What I\'m listening to', 
                 link: 'spotify.html',
-                size: 180,
+                size: 140,
                 textSize: '1rem',
-                padding: '2rem'
+                padding: '1.5rem'
             },
             { 
                 image: 'images/mail.png', 
                 text: 'Email me', 
                 link: 'contact.html',
-                size: 180,
+                size: 140,
                 textSize: '1rem',
-                padding: '2rem'
+                padding: '1.5rem'
             },
             { 
                 image: 'images/drillbutton.png', 
                 text: 'Linkedin', 
                 link: 'https://www.linkedin.com/in/srivatsan-balaji3/',
-                size: 180,
+                size: 140,
                 textSize: '1rem',
-                padding: '2rem'
+                padding: '1.5rem'
             },
             { 
                 image: 'images/tsbutton.png', 
                 text: 'GitHub', 
                 link: 'https://github.com/srivatbalaji',
-                size: 180,
+                size: 140,
                 textSize: '1rem',
-                padding: '1rem'
+                padding: '1.5rem'
             }
         ];
 
         // Function to check if a position overlaps with existing buttons
         const isOverlapping = (x, y, size, existingButtons) => {
-            const minDistance = size * 2; // Increased minimum distance between button centers (120% of button size)
+            const minDistance = size * 1.8; // Optimal spacing between button centers
             return existingButtons.some(button => {
                 const buttonX = parseInt(button.style.left);
                 const buttonY = parseInt(button.style.top);
@@ -207,6 +207,21 @@ document.addEventListener('DOMContentLoaded', () => {
             // Position relative to main-content container
             button.style.left = `${x}px`;
             button.style.top = `${y}px`;
+            
+            // Apply specific position adjustments based on button type
+            if (buttonConfig.text === 'GitHub') {
+                // Move GitHub up (closer to tape)
+                button.style.top = `${parseFloat(button.style.top) - 80}px`;
+            } else if (buttonConfig.text === 'Linkedin') {
+                // Move LinkedIn to the right
+                button.style.left = `${parseFloat(button.style.left) + 80}px`;
+            } else if (buttonConfig.text === 'Email me') {
+                // Move Email me to the right
+                button.style.left = `${parseFloat(button.style.left) + 80}px`;
+            } else if (buttonConfig.text === 'What I\'m listening to') {
+                // Move What I'm listening to to the right
+                button.style.left = `${parseFloat(button.style.left) + 80}px`;
+            }
             
             // Add to existing buttons array
             existingButtons.push(button);

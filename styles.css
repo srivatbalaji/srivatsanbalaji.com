@@ -14,9 +14,13 @@ body {
     font-weight: 400;
     color: #000;
     background-color: #fff;
-    line-height: 1.6;
+    line-height: 1.5;
     min-height: 100vh;
     display: flex;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 /* ============================================
@@ -26,12 +30,12 @@ body {
     position: fixed;
     left: 0;
     top: 0;
-    width: 200px;
+    width: 220px;
     height: 100vh;
-    padding: 2rem;
+    padding: 2.5rem 2rem;
     display: flex;
     flex-direction: column;
-    gap: 0.1rem;
+    gap: 0.5rem;
     background-color: #fff;
     z-index: 100;
 }
@@ -39,11 +43,12 @@ body {
 .site-name {
     text-decoration: none;
     color: #000;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 400;
     padding: 0 0 0.5rem 0;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
     transition: color 0.2s ease;
+    letter-spacing: -0.01em;
 }
 
 .site-name:hover {
@@ -53,10 +58,11 @@ body {
 .nav-link {
     text-decoration: none;
     color: #000;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 400;
-    padding: 0.1rem 0;
+    padding: 0.75rem 0;
     transition: color 0.2s ease;
+    letter-spacing: -0.005em;
 }
 
 .nav-link:hover {
@@ -67,10 +73,10 @@ body {
    MAIN CONTENT AREA (Homepage)
    ============================================ */
 .main-content {
-    margin-left: 200px;
+    margin-left: 220px;
     flex: 1;
     min-height: 100vh;
-    padding: 2rem;
+    padding: 3rem;
     position: relative;
 }
 
@@ -78,8 +84,8 @@ body {
    CONTENT PAGES (About, Projects, etc.)
    ============================================ */
 .content-page {
-    margin-left: 200px;
-    width: calc(100vw - 200px);
+    margin-left: 220px;
+    width: calc(100vw - 220px);
     min-height: 100vh;
     position: relative;
 }
@@ -88,7 +94,7 @@ body {
 .content-page > * {
     position: absolute;
     top: 50%;
-    left: 50vw;
+    left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
 }
@@ -98,7 +104,7 @@ body {
    ============================================ */
 .random-button {
     position: absolute;
-    padding: 2rem;
+    padding: 1.5rem;
     background: transparent;
     border: none;
     display: flex;
@@ -115,9 +121,9 @@ body {
 }
 
 .button-icon {
-    width: 160px;
-    height: 160px;
-    margin-bottom: 4px;
+    width: 140px;
+    height: 140px;
+    margin-bottom: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -132,11 +138,13 @@ body {
 
 .button-text {
     opacity: 0;
-    font-size: 1.2rem;
+    font-size: 1rem;
     text-align: center;
     width: 100%;
-    margin-top: 4px;
+    margin-top: 8px;
     transition: opacity 0.2s ease;
+    letter-spacing: -0.005em;
+    font-weight: 400;
 }
 
 .random-button:hover .button-text {
@@ -147,31 +155,46 @@ body {
    PAGE-SPECIFIC STYLES
    ============================================ */
 .about-content {
-    max-width: 600px;
+    max-width: 550px;
     width: auto;
-    padding: 2rem;
-    font-size: 1rem;
+    padding: 2.5rem;
+    font-size: 1.1rem;
     text-align: center;
+    line-height: 1.7;
 }
 
 .about-content p {
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+}
+
+.about-content p:first-child {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.02em;
+}
+
+.about-content p:last-child {
+    margin-bottom: 0;
+    font-size: 1rem;
+    opacity: 0.8;
 }
 
 .loading {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     color: #000;
     white-space: nowrap;
     text-align: center;
+    letter-spacing: -0.01em;
 }
 
 /* ============================================
    SPOTIFY PAGE
    ============================================ */
 .spotify-container {
-    margin-left: 200px;
-    width: calc(100vw - 200px);
+    margin-left: 220px;
+    width: calc(100vw - 220px);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -191,16 +214,22 @@ body {
         position: static;
         width: 100%;
         height: auto;
-        padding: 1rem;
+        padding: 1.5rem;
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 1.5rem;
+        gap: 2rem;
         justify-content: center;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .site-name {
+        margin-bottom: 0;
+        padding: 0;
     }
     
     .main-content {
         margin-left: 0;
-        padding: 1rem;
+        padding: 2rem 1.5rem;
     }
     
     .content-page {
@@ -214,7 +243,9 @@ body {
     }
     
     .about-content {
-        padding: 1rem;
+        padding: 2rem 1.5rem;
+        font-size: 1rem;
+        max-width: 90vw;
     }
     
     .spotify-container {
@@ -227,7 +258,17 @@ body {
         margin: 1rem;
     }
     
-    .spotify-container iframe {
-        max-width: 90%;
+    .button-icon {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .random-button {
+        padding: 1rem;
+    }
+    
+    .nav-link {
+        padding: 0.5rem 0;
+        font-size: 0.9rem;
     }
 }
