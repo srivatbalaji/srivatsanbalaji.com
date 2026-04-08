@@ -26,8 +26,8 @@ const FLOAT_PARAMS = [
 
 // ─── Layout constants ─────────────────────────────────────────────────────────
 
-const ICON_W        = 180;   // CSS width of .nav-icon  (must match styles.css)
-const ICON_IMG_W    = 160;   // actual image size
+const ICON_W        = 270;   // CSS width of .nav-icon  (must match styles.css)
+const ICON_IMG_W    = 240;   // actual image size
 const ICON_R        = ICON_IMG_W / 2 + 6;   // exclusion radius (image radius + tight margin)
 
 const REPS          = 80;    // phrase repetitions — enough to fill the page
@@ -56,7 +56,7 @@ let animStart  = null;
 // Target ≈ 1/3 of the original 7.5vw = 2.5vw, clamped for readability.
 
 function computeFontSize() {
-    return Math.round(Math.min(36, Math.max(16, window.innerWidth * 0.025)));
+    return Math.round(Math.min(29, Math.max(13, window.innerWidth * 0.020)));
 }
 
 // ─── Measure word widths using a hidden ruler span ────────────────────────────

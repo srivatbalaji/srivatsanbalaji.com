@@ -141,6 +141,7 @@ body {
 .icons-layer {
     position: absolute;
     inset: 0;
+    pointer-events: none; /* pass clicks through to word-links underneath */
 }
 
 /* ============================================
@@ -151,13 +152,14 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 180px;
+    width: 270px;
     text-decoration: none;
     color: #000;
     cursor: grab;
     user-select: none;
     -webkit-user-drag: none;
     z-index: 10;
+    pointer-events: auto; /* re-enable on icons even though parent layer is none */
 }
 
 .nav-icon:active,
@@ -166,8 +168,8 @@ body {
 }
 
 .nav-icon img {
-    width: 160px;
-    height: 160px;
+    width: 240px;
+    height: 240px;
     object-fit: contain;
     pointer-events: none;
     -webkit-user-drag: none;
@@ -293,12 +295,12 @@ body {
     }
 
     .nav-icon {
-        width: 120px;
+        width: 150px;
     }
 
     .nav-icon img {
-        width: 108px;
-        height: 108px;
+        width: 130px;
+        height: 130px;
     }
 
     /* Content pages sidebar → top bar */
