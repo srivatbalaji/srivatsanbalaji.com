@@ -91,7 +91,8 @@ body {
    HOMEPAGE LAYOUT (full page, no sidebar)
    ============================================ */
 #main-content {
-    width: 100vw;
+    margin-left: 200px;
+    width: calc(100vw - 200px);
     height: 100vh;
     position: relative;
     overflow: hidden;
@@ -291,7 +292,9 @@ body {
 
     /* Homepage */
     #main-content {
-        height: 100vh;
+        margin-left: 0;
+        width: 100vw;
+        height: calc(100vh - 56px);
     }
 
     .nav-icon {
