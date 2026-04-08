@@ -152,7 +152,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 270px;
+    width: 216px;
     text-decoration: none;
     color: #000;
     cursor: grab;
@@ -168,8 +168,8 @@ body {
 }
 
 .nav-icon img {
-    width: 240px;
-    height: 240px;
+    width: 192px;
+    height: 192px;
     object-fit: contain;
     pointer-events: none;
     -webkit-user-drag: none;
@@ -295,12 +295,12 @@ body {
     }
 
     .nav-icon {
-        width: 150px;
+        width: 120px;
     }
 
     .nav-icon img {
-        width: 130px;
-        height: 130px;
+        width: 104px;
+        height: 104px;
     }
 
     /* Content pages sidebar → top bar */
