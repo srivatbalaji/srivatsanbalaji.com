@@ -91,7 +91,8 @@ body {
    HOMEPAGE LAYOUT (full page, no sidebar)
    ============================================ */
 #main-content {
-    width: 100vw;
+    margin-left: 200px;
+    width: calc(100vw - 200px);
     height: 100vh;
     position: relative;
     overflow: hidden;
@@ -152,7 +153,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 270px;
+    width: 216px;
     text-decoration: none;
     color: #000;
     cursor: grab;
@@ -168,8 +169,8 @@ body {
 }
 
 .nav-icon img {
-    width: 240px;
-    height: 240px;
+    width: 192px;
+    height: 192px;
     object-fit: contain;
     pointer-events: none;
     -webkit-user-drag: none;
@@ -291,16 +292,18 @@ body {
 
     /* Homepage */
     #main-content {
-        height: 100vh;
+        margin-left: 0;
+        width: 100vw;
+        height: calc(100vh - 56px);
     }
 
     .nav-icon {
-        width: 150px;
+        width: 120px;
     }
 
     .nav-icon img {
-        width: 130px;
-        height: 130px;
+        width: 104px;
+        height: 104px;
     }
 
     /* Content pages sidebar → top bar */
