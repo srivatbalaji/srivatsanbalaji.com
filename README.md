@@ -1,3 +1,3 @@
 Website I made.
 
-Inspired by Tom Sachs, Ai Weiwei, and the natural aesthetics of manual building.
+I thank Tom Sachs, Ai Weiwei, astrae.studio for the font, and claude code.
