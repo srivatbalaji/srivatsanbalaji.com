@@ -124,7 +124,7 @@ body {
     display: block;
     white-space: nowrap;
     text-decoration: none;
-    color: rgba(0, 0, 0, 0.18);
+    color: rgba(0, 0, 238, 0.22);
     pointer-events: auto;
     cursor: pointer;
     line-height: 1;
@@ -133,7 +133,7 @@ body {
 }
 
 .word-link:hover {
-    color: rgba(0, 0, 0, 0.88);
+    color: rgba(0, 0, 238, 0.88);
 }
 
 /* ============================================
@@ -183,27 +183,7 @@ body {
 }
 
 .nav-icon .icon-label {
-    display: block;
-    margin-top: 10px;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.67rem;
-    font-weight: 400;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(0, 0, 0, 0.55);
-    opacity: 0;
-    transition: opacity 0.2s ease;
-    text-align: center;
-    white-space: nowrap;
-    pointer-events: none;
-}
-
-.nav-icon:hover .icon-label {
-    opacity: 1;
-}
-
-.nav-icon.is-dragging .icon-label {
-    opacity: 0 !important;
+    display: none;
 }
 
 /* ============================================
