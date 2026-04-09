@@ -55,7 +55,7 @@ let lineHeight = 0;
 let spaceW     = 0;
 
 const wordW     = {};  // word text → measured px width
-const wordEls   = [];  // [{ el: <a> }]
+const wordEls   = [];  // [{ el: <a>, lastTr: string }]
 const iconState = {};  // id → drag/float state
 
 let containerW = 0;
@@ -223,7 +223,7 @@ function buildWordElements() {
             a.href        = pw.href;
             a.style.transform = 'translate(-9999px,-9999px)';
             bg.appendChild(a);
-            wordEls.push({ el: a });
+            wordEls.push({ el: a, lastTr: '' });
         });
     }
 }
@@ -247,8 +247,8 @@ function runLayout() {
         };
     }).filter(Boolean);
 
-    // Dirty-check — skip if nothing moved
-    const sig = zones.map(z => `${z.x.toFixed(1)},${z.y.toFixed(1)}`).join('|');
+    // Dirty-check — skip if nothing moved by ≥1px
+    const sig = zones.map(z => `${z.x | 0},${z.y | 0}`).join('|');
     if (sig === prevLayout) return;
     prevLayout = sig;
 
@@ -256,12 +256,14 @@ function runLayout() {
     let y = PAD_V;
 
     for (let i = 0; i < wordEls.length; i++) {
-        const { el } = wordEls[i];
+        const entry = wordEls[i];
+        const { el } = entry;
         const ww  = wordW[el.textContent] ?? 40;
         const gap = spaceW;
 
         if (y > containerH + lineHeight) {
-            el.style.transform = 'translate(-9999px,-9999px)';
+            const offTr = 'translate(-9999px,-9999px)';
+            if (entry.lastTr !== offTr) { entry.lastTr = offTr; el.style.transform = offTr; }
             continue;
         }
 
@@ -290,7 +292,8 @@ function runLayout() {
             }
 
             if (!blocker) {
-                el.style.transform = `translate(${x | 0}px,${y | 0}px)`;
+                const tr = `translate(${x | 0}px,${y | 0}px)`;
+                if (entry.lastTr !== tr) { entry.lastTr = tr; el.style.transform = tr; }
                 x += ww + gap;
                 placed = true;
             } else {
@@ -298,7 +301,10 @@ function runLayout() {
             }
         }
 
-        if (!placed) el.style.transform = 'translate(-9999px,-9999px)';
+        if (!placed) {
+            const offTr = 'translate(-9999px,-9999px)';
+            if (entry.lastTr !== offTr) { entry.lastTr = offTr; el.style.transform = offTr; }
+        }
     }
 }
 
